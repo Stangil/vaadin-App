@@ -6,11 +6,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -24,6 +20,21 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        HorizontalLayout hLayout = new HorizontalLayout();
+        TextField userName = new TextField();
+        userName.setCaption("Username");
+
+        Label showName = new Label();
+
+        Button loginButton = new Button("Login");
+        loginButton.addClickListener(e-> {
+            showName.setValue(userName.getValue());
+            Notification.show("WASSSSUP " + userName.getValue());
+        });
+
+        hLayout.addComponents(userName, loginButton);
+
+        setContent(hLayout);
 
     }
 
